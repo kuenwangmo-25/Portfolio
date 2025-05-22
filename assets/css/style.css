@@ -1126,7 +1126,6 @@ section {
 .col-lg-6{
     width: 40%;
 }
-
 .laptop-container {
   flex: 1;
   max-width: 80%;
@@ -1134,16 +1133,16 @@ section {
   position: relative;
   justify-content: space-between;
   margin-left: 10%;
-
+  flex-wrap: wrap; /* allow wrapping on small screens */
+  gap: 1rem; /* some space between children */
 }
 
 .image {
   position: absolute;
   max-width: 100%;
-  /* height: auto;
-  margin: 20px auto; */
   margin-top: 50px;
   margin-left: 50px;
+  /* Use relative positioning so images adjust properly on smaller screens */
 }
 
 /* Image Classes */
@@ -1171,32 +1170,27 @@ section {
 /* Hover Effects */
 .image-back:hover {
   transform: scale(1.05);
-  /* Slightly increase size on hover */
   opacity: 0.8;
-  /* Slightly reduce opacity on hover */
 }
 
 .image-middle:hover {
   transform: translate(-20%, 20%) scale(1.05);
-  /* Maintain translate and slightly increase size on hover */
   opacity: 0.8;
-  /* Slightly reduce opacity on hover */
 }
 
 .image-front:hover {
   transform: translate(-68%, 68%) scale(1.05);
-  /* Maintain translate and slightly increase size on hover */
   opacity: 0.8;
-  /* Slightly reduce opacity on hover */
 }
 
-
-/* /.................. */
+/* Phone styles */
 .phone {
   width: 45%;
   transition: transform 0.3s;
   border: 0.2em solid #1c931c;
   border-radius: 20px;
+  max-width: 300px; /* limit max size */
+  box-sizing: border-box;
 }
 
 .phone-left {
@@ -1211,3 +1205,54 @@ section {
   transform: scale(1.1);
 }
 
+/* Responsive media queries */
+
+@media (max-width: 1024px) {
+  .laptop-container {
+    max-width: 90%;
+    margin-left: 5%;
+  }
+  .image-back {
+    max-width: 70%;
+  }
+  .image-middle {
+    max-width: 50%;
+  }
+  .image-front {
+    max-width: 30%;
+  }
+  .phone {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .laptop-container {
+    flex-direction: column;
+    margin-left: 0;
+    max-width: 100%;
+  }
+  .image {
+    position: relative;
+    margin: 1rem auto;
+    transform: none !important; /* reset translate */
+    max-width: 90%;
+  }
+  .image-back, .image-middle, .image-front {
+    max-width: 90%;
+    transform: none !important;
+    margin-bottom: 1rem;
+  }
+  .phone {
+    width: 60%;
+    max-width: none;
+    margin: 0 auto 1rem auto;
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .phone {
+    width: 80%;
+  }
+}
